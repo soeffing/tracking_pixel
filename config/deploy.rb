@@ -5,6 +5,20 @@ settings = JSON.parse File.read(File.join(File.dirname(__FILE__), 'app.json'))
 set :application, "hummingbird"
 set :scm, :git
 
+
+
+# server details
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+ssh_options[:keys] = ["/home/soeffing/Dropbox/Adooza/EC2/AdoozaSite.pem"] 
+ssh_options[:config] = false 
+ssh_options[:verbose] = :debug 
+set :deploy_to, "/home/ubuntu/www/hummingbird"
+set :scm_verbose, true
+set :scm_username, "soeffing"  # If you access your source repository with a different user name than you are logged into your local machine with, Capistrano needs to know.
+set :user, "ubuntu"   # is the user on the server that runs this recipes
+set :use_sudo, false
+
 set :repository, settings['capistrano']['repository']
 
 set :hummingbird_host, settings['capistrano']['hummingbird_host']
@@ -15,8 +29,8 @@ role :db,  hummingbird_host
 
 depend :remote, :command, 'git'
 
-set :git_enable_submodules, 1
-set :deploy_to, "/var/www/#{application}"
+#set :git_enable_submodules, 1
+#set :deploy_to, "/var/www/#{application}"
 
 default_run_options[:pty] = true
 
@@ -26,9 +40,11 @@ namespace :deploy do
     run "#{try_sudo} restart hummingbird_monitor"
   end
 
-  task :update_node_modules, :roles => :app do
-    run "cd #{latest_release}/#{current} && npm install"
-  end
+ # error with capistrano therefoe excluded IMPORTANT: excluded after filter at the end of this file!!!!
+
+ # task :update_node_modules, :roles => :app do
+ #   run "cd #{latest_release}/#{current} && npm install"
+ # end
 end
 
 desc 'Tail the production log'
@@ -66,4 +82,4 @@ task :backup, :roles => :db do
 end
 
 after 'deploy:update_code', 'update:symlink_shared'
-after 'deploy:update_code', 'deploy:update_node_modules'
+# after 'deploy:update_code', 'deploy:update_node_modules'
