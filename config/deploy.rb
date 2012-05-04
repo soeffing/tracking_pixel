@@ -44,11 +44,11 @@ namespace :deploy do
 
  # /home/ubuntu <- pwd
 
-  task :update_node_modules, :roles => :app do
-    run "cd /home/ubuntu/www/hummingbird/current && npm install"
-    run "cd /home/ubuntu/www/hummingbird/current && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
-    run "cd /home/ubuntu/www/hummingbird/current && gunzip GeoLiteCity.dat.gz"
-  end
+#  task :update_node_modules, :roles => :app do
+#    run "cd /home/ubuntu/www/hummingbird/current && npm install"
+#    run "cd /home/ubuntu/www/hummingbird/current && wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
+#    run "cd /home/ubuntu/www/hummingbird/current && gunzip GeoLiteCity.dat.gz"
+#  end
 end
 
 desc 'Tail the production log'
