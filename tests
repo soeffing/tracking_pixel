@@ -1,0 +1,20 @@
+jsdom.env(env.url, [  'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' ],
+  function(errors, window) {
+    var position = window.$("img#adooza-picky").position();
+    var height = window.innerWidth;
+   
+    console.log(window.$("div#adooza-picky").offsetHeight);
+    console.log(window.$("img#adooza-picky").src);
+  });
+
+
+
+ j.env("http://localhost/hummingbird-test.html", [  'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js' ],
+  function(errors, window) {
+    wi = window.$('img#adooza-picky');
+  });
+
+
+
+
+var jsdom  = require("jsdom").jsdom, doc    = jsdom(html, level, options), window = doc.createWindow();

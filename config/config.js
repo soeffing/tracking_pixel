@@ -13,7 +13,8 @@ module.exports = config = {
   "enable_dashboard" : true,
 
   "capistrano" : {
-    "repository" :       "git://github.com/mnutt/hummingbird.git",
+    "repository" :       "git://github.com/soeffing/tracking_pixel.git",
     "hummingbird_host" : "hummingbird.your-host.com"
   }
 }
+
